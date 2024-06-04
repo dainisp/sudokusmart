@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./images/qsudoku.svg" />
+    <link href="./style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku smart</title>
+    <script src="./scripts/svg.js/svg.min.js"></script>
+    <script src="./scripts/jquery-3.7.1.min.js"></script>
+    <script src="./scripts/cookies.js"></script>
+    <script src="./scripts/sudoku.js"></script>
+    <script src="./scripts/upload1.js"></script>
+  
+  </head>
+  <body>
+    <div class="field">
+      <svg id="svgtag" onclick="cellClick(event)" width="500px" height="500px"  viewBox="-2 -2 814 814"  xmlns="http://www.w3.org/2000/svg">
+       <line x1="0" y1="0" x2="810" y2="0" style="stroke:red;stroke-width:4" />
+       <line x1="810" y1="0" x2="810" y2="810" style="stroke:red;stroke-width:4" />
+       <line x1="0" y1="810" x2="810" y2="810" style="stroke:red;stroke-width:4" />
+       <line x1="0" y1="0" x2="0" y2="810" style="stroke:red;stroke-width:4" />
+      
+       <line x1="270" y1="0" x2="270" y2="810" style="stroke:red;stroke-width:4" />
+       <line x1="540" y1="0" x2="540" y2="810" style="stroke:red;stroke-width:4" />
+      <line x1="0" y1="270" x2="810" y2="270" style="stroke:red;stroke-width:4" />
+      <line x1="0" y1="540" x2="810" y2="540" style="stroke:red;stroke-width:4" />
+      
+      <line x1="90" y1="0" x2="90" y2="810" style="stroke:red;stroke-width:1" />
+      <line x1="180" y1="0" x2="180" y2="810" style="stroke:red;stroke-width:1" />
+      <line x1="360" y1="0" x2="360" y2="810" style="stroke:red;stroke-width:1" />
+      <line x1="450" y1="0" x2="450" y2="810" style="stroke:red;stroke-width:1" />
+      <line x1="630" y1="0" x2="630" y2="810" style="stroke:red;stroke-width:1" />
+      <line x1="720" y1="0" x2="720" y2="810" style="stroke:red;stroke-width:1" />
+      
+      <line x1="0" y1="90" x2="810" y2="90" style="stroke:red;stroke-width:1" />
+      <line x1="0" y1="180" x2="810" y2="180" style="stroke:red;stroke-width:1" />
+      <line x1="0" y1="360" x2="810" y2="360" style="stroke:red;stroke-width:1" />
+      <line x1="0" y1="450" x2="810" y2="450" style="stroke:red;stroke-width:1" />
+      <line x1="0" y1="630" x2="810" y2="630" style="stroke:red;stroke-width:1" />
+      <line x1="0" y1="720" x2="810" y2="720" style="stroke:red;stroke-width:1" />
+      </svg>
+      </div>
+      <br/>
+      <div class="buttons"  >
+       <span>
+        <input type="checkbox" id="penCheck" value="penCheck"  >
+        <label class="checklabel" for="penCheck">Pen</label>
+        </span>  
+        <input class="numberbutton" type="button"  value="1" onclick="doNumberClick(this);" />
+          <input class="numberbutton" type="button"  value="2" onclick="doNumberClick(this);" />
+          <input class="numberbutton" type="button"  value="3" onclick="doNumberClick(this);" />
+          <input class="numberbutton" type="button"  value="4" onclick="doNumberClick(this);" />
+          <input class="numberbutton" type="button"  value="5" onclick="doNumberClick(this);" />
+          <input class="numberbutton" type="button"  value="6" onclick="doNumberClick(this);" />
+          <input class="numberbutton" type="button"  value="7" onclick="doNumberClick(this);" />
+          <input class="numberbutton" type="button"  value="8" onclick="doNumberClick(this);" />    
+          <input class="numberbutton" type="button"  value="9" onclick="doNumberClick(this);" />
+        
+           
+          <button type="submit" class="strategybutton" onclick="gameField.onStrategyClick();"  >
+            <img class="buttonimage"  src="./images/Love_Heart_SVG.svg" alt="buttonpng" border="0" />
+          </button>
+          <label id="strategylabel" class="strategylabel" ></label>
+      </div>
+      <div class="buttons" >
+        <input type="button"  value="NewGame" id="newgame" onclick="onNewGameClick();" />
+        <select name="level" id="level">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+          <option value="expert">Expert</option>
+        </select>
+        <input type="button"  value="Save" id="savegame" onclick="onUploadClick();"  /> 
+        <label id="gametime">00:00:00</label>
+      
+      </div>
+      <div>
+    
+        <input type='file' id='file-input' />
+       
+      </div>
+    <script src="./scripts/field.js"></script>
+    
+    <div id="cookieNotice" class="light display-right" style="display: none;">
+      <div id="closeIcon" style="display: none;">
+      </div>
+      <div class="title-wrap">
+          <h4>Cookie Consent</h4>
+      </div>
+      <div class="content-wrap">
+          <div class="msg-wrap">
+              <p>This website uses cookies or similar technologies, to enhance your browsing experience and provide personalized recommendations. By continuing to use our website, you agree to our  <a style="color:#115cfa;" href="/privacy-policy">Privacy Policy</a></p>
+              <div class="btn-wrap">
+                  <button class="btn-primary" onclick="acceptCookieConsent();">Accept</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  </body>
+
+
+</html>
