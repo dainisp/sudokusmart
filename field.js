@@ -1,4 +1,11 @@
-//import "main.js"
+import { SVG } from '@svgdotjs/svg.js'
+import { getSudoku } from 'sudoku-gen'
+import {getCookie,setCookie} from "./cookies.js"
+import jQuery from 'jquery'
+import * as videojs from 'videojs-overlay'
+window.$ = jQuery
+
+
 class StrategyFinder {
   pens = Array()
   groups = Array()
@@ -1202,6 +1209,7 @@ class GameField {
   playEndGame()
 {
   var x = document.getElementById("audio");
+  x.volume = 0.5
   x.play()   
 }
 
@@ -1428,7 +1436,7 @@ class GameField {
           if (this.checkDone())
             {
               this.playEndGame()
-              videojs(document.querySelector('video')).overlay();
+             // videojs(document.querySelector('video')).overlay();
               this.timerOn = false
               alert("Good, you are winner!!!")
             }
@@ -1626,20 +1634,24 @@ class GameField {
 
 
 
-function cellClick(event) {
-    var fieldWidth = event.currentTarget.clientHeight;
-  var cellWidth = fieldWidth / 9;
+export function cellClick(event) {
+  var rect = $("#svgtag")[0].getBoundingClientRect()
+
+  //checkTag = $("#svgtag")[0].y
+//console.log(rect.top, rect.right, rect.bottom, rect.left);
+    
+  var cellWidth = rect.height/ 9;
   var colleft = event.clientX % cellWidth
   var col = (event.clientX - colleft) / cellWidth;
-  var rowleft = event.clientY % cellWidth
-  var row = (event.clientY - rowleft) / cellWidth;
+  var rowleft = (event.clientY-rect.y) % cellWidth
+  var row = (event.clientY-rect.y - rowleft) / cellWidth;
   var newSelectedCell = row * 9 + col;
   gameField.onCellClick(newSelectedCell)
-  //  alert("fuck!" + col + " " + row + " " + selectedCell )  
+
 }
 
-
-function doClick() {
+/*
+export function doClick() {
   var cells = Array()
   for (row = 0; row < 9; row++) {
     for (col = 0; col < 9; col++) {
@@ -1661,22 +1673,27 @@ function doClick() {
   drawPens(pens)
   //alert("fuck!")
 }
-
-function doNumberClick(element) {
+*/
+export function doNumberClick(element) {
   var isChecked = $("#penCheck").is(":checked")
   //var isChecked = penCheck.value //penCheck
-  gameField.doValueClick(element.value, isChecked)
+  gameField.doValueClick(element.target.value, isChecked)
 
 }
 
-function onNewGameClick() {
+export function onStrategyClick()
+{
+  gameField.onStrategyClick()
+}
+
+export function onNewGameClick() {
   var levelEl = $("#level")[0]
   var level = levelEl.value
-  const sudoku = window.sudoku.getSudoku(level)
+  const sudoku = getSudoku(level)
   gameField.loadNewGame(sudoku)
 }
 
-function onUploadClick() {
+export function onUploadClick() {
   var gameJson = gameField.getGameJson();
   var data = new Blob([gameJson]);
   var downloadLink = document.getElementById("aDownloadCsv2");
@@ -1718,6 +1735,21 @@ gameField.setDraw(SVG('#svgtag'))
 
 
 jQuery(document).ready(function ($) {
+
+  let fileInput = document.getElementById('file-input')
+  
+  fileInput.onchange = () => {
+    const reader = new FileReader()
+    reader.onload = (e) => { 
+      //console.log('file contents:', e.target.result)
+      gameField.loadGameJson(e.target.result)
+    }
+    
+    for (let file of fileInput.files) {
+      reader.readAsText(file)
+    }
+  }
+
 
   let cookie_consent = getCookie("user_cookie_consent");
   if (cookie_consent != "") {

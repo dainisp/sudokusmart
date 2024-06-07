@@ -14,6 +14,7 @@
   "dependencies": {
     "@svgdotjs/svg.js": "^3.2.0",
     "jquery": "^3.7.1",
-    "sudoku-gen": "^1.0.2"
+    "sudoku-gen": "^1.0.2",
+    "videojs-overlay":"^3.1.0"
   }
 }
