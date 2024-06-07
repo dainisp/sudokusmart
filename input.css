@@ -45,6 +45,7 @@ button#strategybutton
 #basecontent
 {
     padding-left: 20%;
+  
 }
 label.strategylabel
 {
@@ -59,4 +60,12 @@ label.strategylabel
 svg {
     cursor: pointer; 
    }
- 
+   #video
+   {
+   position: absolute;
+   top: 0;
+   left: 0;
+   opacity: 0.6;
+    visibility: hidden;
+   }
+  

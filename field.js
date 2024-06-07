@@ -1192,11 +1192,11 @@ class GameField {
   valueSelections = undefined
   strategyResults = undefined
   strategyPens = undefined
-  strategyCellColor = '#a0c0a0'
-  strategyUsableCellColor = '#c0a0a0'
+  strategyCellColor = '#a0ffa0'
+  strategyUsableCellColor = '#ffa0a0'
   strategyPenColor = '#f0f010'
   selColor = '#c0c0c0'
-  selOpacity = 0.6
+  selOpacity = 0.7
   timerOn = false
   cellGroups = Array()
 
@@ -1437,7 +1437,14 @@ class GameField {
             {
               this.playEndGame()
              // videojs(document.querySelector('video')).overlay();
-              this.timerOn = false
+             var video = $("#video")[0]
+             video.style.visibility='visible'
+             video.play()
+             setTimeout(function(){
+              video.pause();
+              video.style.visibility='hidden'
+          }, 5000); 
+             this.timerOn = false
               alert("Good, you are winner!!!")
             }
           this.addValueSelections(value)
