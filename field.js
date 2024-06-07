@@ -1636,15 +1636,13 @@ class GameField {
 
 export function cellClick(event) {
   var rect = $("#svgtag")[0].getBoundingClientRect()
-
   //checkTag = $("#svgtag")[0].y
 //console.log(rect.top, rect.right, rect.bottom, rect.left);
-    
-  var cellWidth = rect.height/ 9;
-  var colleft = event.clientX % cellWidth
-  var col = (event.clientX - colleft) / cellWidth;
-  var rowleft = (event.clientY-rect.y) % cellWidth
-  var row = (event.clientY-rect.y - rowleft) / cellWidth;
+  var cellWidth = rect.height/9;
+  var offsetTop = event.clientY-rect.y 
+  var offsetLeft = event.clientX-rect.x
+  var col = Math.trunc(offsetLeft / cellWidth);
+  var row = Math.trunc(offsetTop / cellWidth);
   var newSelectedCell = row * 9 + col;
   gameField.onCellClick(newSelectedCell)
 

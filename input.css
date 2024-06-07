@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+img.buttonimage
+{
+    width: 0.8cm;
+    height: 0.8cm;
+}
+input.numberbutton
+{
+    width: 1cm;
+    height: 1cm;
+    font-size: larger;
+}
+/*
+#svgdiv{
+    
+        display: flex;
+        justify-content: center;
+      
+}
+*/
+/*
+#buttonbox
+{
+    display: grid;
+    justify-content: center;
+}
+*/
+div.buttons
+{
+    display: flex;
+    align-items: center;
+}
+span.checklabel
+{
+   
+  border-right: 10px solid white;
+}
+button#strategybutton
+{
+    border-left: 10px solid white; 
+}
+#basecontent
+{
+    padding-left: 20%;
+}
+label.strategylabel
+{
+  border-left: 10px solid white;
+
+}
+#gametime
+{
+  border-top: 5px solid white;
+  border-left: 10px solid white;
+}
+svg {
+    cursor: pointer; 
+   }
+ 

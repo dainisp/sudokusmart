@@ -4,15 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/qsudoku.svg" />
-  <link href="./style.css" rel="stylesheet" />
+
   <title>Sudoku smart</title>
 </head>
 
 <body>
   <div id="app"></div>
   <script type="module" src="/main.js"></script>
+  <div id="basecontent" >
   <div id="svgdiv" class="field">
-    <svg id="svgtag" width="500px" height="500px" viewBox="-2 -2 814 814"
+    <svg id="svgtag" width="40%"  viewBox="-2 -2 814 814"
       xmlns="http://www.w3.org/2000/svg">
       <line x1="0" y1="0" x2="810" y2="0" style="stroke:red;stroke-width:4" />
       <line x1="810" y1="0" x2="810" y2="810" style="stroke:red;stroke-width:4" />
@@ -40,10 +41,11 @@
     </svg>
   </div>
   <br />
+  <div id="buttonbox" >
   <div class="buttons">
-    <span>
+    <span class="checklabel" >
       <input type="checkbox" id="penCheck" value="penCheck">
-      <label class="checklabel" for="penCheck">Pen</label>
+      <label  for="penCheck">Pen</label>
     </span>
     <input class="numberbutton" type="button" value="1"  />
     <input class="numberbutton" type="button" value="2"  />
@@ -61,6 +63,7 @@
     </button>
     <label id="strategylabel" class="strategylabel"></label>
   </div>
+ <div>
   <div class="buttons">
     <input type="button" value="NewGame" id="newgame" />
     <select name="level" id="level">
@@ -73,9 +76,12 @@
     <label id="gametime">00:00:00</label>
 
   </div>
+  </div>
   <div>
     <input type='file' id='file-input' />
   </div>
+</div>
+</div>
   <div id="cookieNotice" class="light display-right" style="display: none;">
     <div id="closeIcon" style="display: none;">
     </div>

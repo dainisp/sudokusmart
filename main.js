@@ -1,4 +1,4 @@
-import './style.css'
+import './input.css'
 
 import jQuery from 'jquery'
 window.$ = jQuery
