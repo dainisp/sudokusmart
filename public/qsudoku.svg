@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="100mm"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
+   sodipodi:docname="qsudoku.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.5"
+     inkscape:cx="287"
+     inkscape:cy="220"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5480">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop5476" />
+      <stop
+         style="stop-color:#9a9898;stop-opacity:1"
+         offset="1"
+         id="stop5478" />
+    </linearGradient>
+    <rect
+       x="100.43462"
+       y="184.89558"
+       width="114.57346"
+       height="100.60777"
+       id="rect3290" />
+    <rect
+       x="100.43462"
+       y="184.89558"
+       width="114.57346"
+       height="100.60777"
+       id="rect3290-6" />
+    <rect
+       x="100.43462"
+       y="184.89558"
+       width="114.57346"
+       height="100.60777"
+       id="rect3290-1" />
+    <rect
+       x="100.43462"
+       y="184.89558"
+       width="114.57346"
+       height="100.60777"
+       id="rect3290-6-4" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5480"
+       id="radialGradient5482"
+       cx="50"
+       cy="50"
+       fx="50"
+       fy="50"
+       r="50"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:url(#radialGradient5482);fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:20;stroke-dasharray:none;paint-order:markers fill stroke"
+       id="rect5394"
+       width="100"
+       height="100"
+       x="5e-07"
+       y="5e-07" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:54.1045px;line-height:1.25;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#029800;fill-opacity:1;stroke-width:4.05784"
+       x="30.933517"
+       y="26.041374"
+       id="text17395"
+       transform="rotate(20)"><tspan
+         sodipodi:role="line"
+         id="tspan21466"
+         x="30.933517"
+         y="26.041374"
+         style="fill:#029800;fill-opacity:1;stroke-width:4.05784">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:54.1045px;line-height:1.25;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#8d0098;fill-opacity:1;stroke-width:4.05784"
+       x="63.577312"
+       y="94.795654"
+       id="text17395-6"><tspan
+         sodipodi:role="line"
+         id="tspan23073"
+         x="63.577312"
+         y="94.795654">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:54.1045px;line-height:1.25;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#070098;fill-opacity:1;stroke-width:4.05784"
+       x="-9.1671076"
+       y="96.833557"
+       id="text17395-1"
+       transform="rotate(-10)"><tspan
+         sodipodi:role="line"
+         id="tspan23093"
+         x="-9.1671076"
+         y="96.833557">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:54.1045px;line-height:1.25;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#ff0d0d;fill-opacity:1;stroke-width:4.05784"
+       x="36.723106"
+       y="89.570396"
+       id="text17395-5"><tspan
+         sodipodi:role="line"
+         id="tspan23153"
+         x="36.723106"
+         y="89.570396">?</tspan></text>
+  </g>
+</svg>
