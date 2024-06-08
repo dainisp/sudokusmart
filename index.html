@@ -11,10 +11,8 @@
 <body>
   <div id="app"></div>
   <script type="module" src="/main.js"></script>
-  <div id="basecontent" >
-  <div id="svgdiv" class="field">
-    <svg id="svgtag" width="40%"  viewBox="-2 -2 814 814"
-      xmlns="http://www.w3.org/2000/svg">
+  <div id="field" class="center">
+    <svg id="svgtag" width="100%" viewBox="-2 -2 814 814" xmlns="http://www.w3.org/2000/svg">
       <line x1="0" y1="0" x2="810" y2="0" style="stroke:red;stroke-width:4" />
       <line x1="810" y1="0" x2="810" y2="810" style="stroke:red;stroke-width:4" />
       <line x1="0" y1="810" x2="810" y2="810" style="stroke:red;stroke-width:4" />
@@ -40,73 +38,72 @@
       <line x1="0" y1="720" x2="810" y2="720" style="stroke:red;stroke-width:1" />
     </svg>
   </div>
-  <br />
-  <div id="buttonbox" >
-  <div class="buttons">
-    <span class="checklabel" >
-      <input type="checkbox" id="penCheck" value="penCheck">
-      <label  for="penCheck">Pen</label>
-    </span>
-    <input class="numberbutton" type="button" value="1"  />
-    <input class="numberbutton" type="button" value="2"  />
-    <input class="numberbutton" type="button" value="3"  />
-    <input class="numberbutton" type="button" value="4" />
-    <input class="numberbutton" type="button" value="5"  />
-    <input class="numberbutton" type="button" value="6"  />
-    <input class="numberbutton" type="button" value="7"  />
-    <input class="numberbutton" type="button" value="8" />
-    <input class="numberbutton" type="button" value="9"  />
+  <div id="buttonbox" class="center">
+    <div class="buttons">
+      <span class="checklabel">
+        <input type="checkbox" id="penCheck" value="penCheck">
+        <label for="penCheck">Pen</label>
+      </span>
+      <input class="numberbutton" type="button" value="1" />
+      <input class="numberbutton" type="button" value="2" />
+      <input class="numberbutton" type="button" value="3" />
+      <input class="numberbutton" type="button" value="4" />
+      <input class="numberbutton" type="button" value="5" />
+      <input class="numberbutton" type="button" value="6" />
+      <input class="numberbutton" type="button" value="7" />
+      <input class="numberbutton" type="button" value="8" />
+      <input class="numberbutton" type="button" value="9" />
 
 
-    <button type="submit" class="strategybutton" id="strategybutton" >
-      <img class="buttonimage" src="./Love_Heart_SVG.svg" alt="buttonpng" border="0" />
-    </button>
-    <label id="strategylabel" class="strategylabel"></label>
-  </div>
- <div>
-  <div class="buttons">
-    <input type="button" value="NewGame" id="newgame" />
-    <select name="level" id="level">
-      <option value="easy">Easy</option>
-      <option value="medium">Medium</option>
-      <option value="hard">Hard</option>
-      <option value="expert">Expert</option>
-    </select>
-    <input type="button" value="Save" id="savegame"  />
-    <label id="gametime">00:00:00</label>
+      <button type="submit" class="strategybutton" id="strategybutton">
+        <img class="buttonimage" src="./Love_Heart_SVG.svg" alt="buttonpng" />
+      </button>
+      <label id="strategylabel" class="strategylabel"></label>
+    </div>
+    <div>
+      <div class="buttons">
+        <input type="button" value="NewGame" id="newgame" />
+        <select name="level" id="level">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+          <option value="expert">Expert</option>
+        </select>
+        <input type="button" value="Save" id="savegame" />
+        <label id="gametime">00:00:00</label>
 
+      </div>
+    </div>
+    <div>
+      <input type='file' id='file-input' />
+    </div>
   </div>
-  </div>
-  <div>
-    <input type='file' id='file-input' />
-  </div>
-</div>
-</div>
   <div id="cookieNotice" class="light display-right" style="display: none;">
     <div id="closeIcon" style="display: none;">
     </div>
     <div class="title-wrap">
-        <h4>Cookie Consent</h4>
+      <h4>Cookie Consent</h4>
     </div>
     <div class="content-wrap">
-        <div class="msg-wrap">
-            <p>This website uses cookies or similar technologies, to enhance your browsing experience and provide personalized recommendations. By continuing to use our website, you agree to our  <a style="color:#115cfa;" href="/privacy-policy">Privacy Policy</a></p>
-            <div class="btn-wrap">
-                <button class="btn-primary" id="cookieaccept" >Accept</button>
-            </div>
+      <div class="msg-wrap">
+        <p>This website uses cookies or similar technologies, to enhance your browsing experience and provide
+          personalized recommendations. By continuing to use our website, you agree to our <a style="color:#115cfa;"
+            href="/privacy-policy">Privacy Policy</a></p>
+        <div class="btn-wrap">
+          <button class="btn-primary" id="cookieaccept">Accept</button>
         </div>
+      </div>
     </div>
-</div>
+  </div>
   <audio id="audio">
     <source src="./dong.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
- 
-  <video id="video" >
+
+  <video id="video">
     <source src="./salut.mp4" type="video/mp4">
-      Your browser does not support HTML video.
+    Your browser does not support HTML video.
   </video>
--->
 </body>
 
 </html>

@@ -1,71 +1,54 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-img.buttonimage
-{
-    width: 0.8cm;
-    height: 0.8cm;
+.center {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
-input.numberbutton
-{
+
+img.buttonimage {
+    width: 0.75cm;
+    height: 0.75cm;
+}
+
+input.numberbutton {
     width: 1cm;
     height: 1cm;
     font-size: larger;
 }
-/*
-#svgdiv{
-    
-        display: flex;
-        justify-content: center;
-      
-}
-*/
-/*
-#buttonbox
-{
-    display: grid;
-    justify-content: center;
-}
-*/
-div.buttons
-{
+
+div.buttons {
     display: flex;
     align-items: center;
 }
-span.checklabel
-{
-   
-  border-right: 10px solid white;
-}
-button#strategybutton
-{
-    border-left: 10px solid white; 
-}
-#basecontent
-{
-    padding-left: 20%;
-  
-}
-label.strategylabel
-{
-  border-left: 10px solid white;
 
+span.checklabel {
+    border-right: 10px solid white;
 }
-#gametime
-{
-  border-top: 5px solid white;
-  border-left: 10px solid white;
+
+button#strategybutton {
+    margin-left: 8px;
 }
+
+#basecontent {
+    padding-left: 20%;
+}
+
+label.strategylabel {
+    border-left: 10px solid white;
+}
+
+#gametime {
+    border-top: 5px solid white;
+    border-left: 10px solid white;
+}
+
 svg {
-    cursor: pointer; 
-   }
-   #video
-   {
-   position: absolute;
-   top: 0;
-   left: 0;
-   opacity: 0.6;
+    cursor: pointer;
+}
+
+#video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
     visibility: hidden;
-   }
-  
+}
