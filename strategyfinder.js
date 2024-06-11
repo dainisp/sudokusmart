@@ -1,3 +1,4 @@
+import { groups } from "./groups"
 
 export class StrategyFinder {
     pens = Array()
@@ -9,35 +10,18 @@ export class StrategyFinder {
     strategyNames = Array()
     hiddenNakedSelectedCells = Array()
     hiddenNakedIsHidden = false
+    //needed for xChain
+    hardLinkPens = Array()
+    hardLinkGroups = Array()
+    hardLinksFirst = Array()
+    hardLinksSecond = Array()
+    softlinksFirst = Array()
+    softlinksSecond = Array()
+    linkTypes = Array()
+    linkIndexes = Array()
+
     constructor(pens) {
-      this.groups =
-        [[0, 1, 2, 3, 4, 5, 6, 7, 8],
-        [9, 10, 11, 12, 13, 14, 15, 16, 17],
-        [18, 19, 20, 21, 22, 23, 24, 25, 26],
-        [27, 28, 29, 30, 31, 32, 33, 34, 35],
-        [36, 37, 38, 39, 40, 41, 42, 43, 44],
-        [45, 46, 47, 48, 49, 50, 51, 52, 53],
-        [54, 55, 56, 57, 58, 59, 60, 61, 62],
-        [63, 64, 65, 66, 67, 68, 69, 70, 71],
-        [72, 73, 74, 75, 76, 77, 78, 79, 80],
-        [0, 9, 18, 27, 36, 45, 54, 63, 72],
-        [1, 10, 19, 28, 37, 46, 55, 64, 73],
-        [2, 11, 20, 29, 38, 47, 56, 65, 74],
-        [3, 12, 21, 30, 39, 48, 57, 66, 75],
-        [4, 13, 22, 31, 40, 49, 58, 67, 76],
-        [5, 14, 23, 32, 41, 50, 59, 68, 77],
-        [6, 15, 24, 33, 42, 51, 60, 69, 78],
-        [7, 16, 25, 34, 43, 52, 61, 70, 79],
-        [8, 17, 26, 35, 44, 53, 62, 71, 80],
-        [0, 1, 2, 9, 10, 11, 18, 19, 20],
-        [3, 4, 5, 12, 13, 14, 21, 22, 23],
-        [6, 7, 8, 15, 16, 17, 24, 25, 26],
-        [27, 28, 29, 36, 37, 38, 45, 46, 47],
-        [30, 31, 32, 39, 40, 41, 48, 49, 50],
-        [33, 34, 35, 42, 43, 44, 51, 52, 53],
-        [54, 55, 56, 63, 64, 65, 72, 73, 74],
-        [57, 58, 59, 66, 67, 68, 75, 76, 77],
-        [60, 61, 62, 69, 70, 71, 78, 79, 80]];
+      
       this.strategyNames[0] = "Single"
       this.strategyNames[1] = "Claimed"
       this.strategyNames[2] = "Pointing"
@@ -52,6 +36,7 @@ export class StrategyFinder {
       this.strategyNames[11] = "XWing"
       this.strategyNames[12] = "WWing"
       this.strategyNames[13] = "FinXWing"
+      this.strategyNames[14] = "XChain"
 
       
       this.strategyNames[-1] = "Unknown"
@@ -61,7 +46,7 @@ export class StrategyFinder {
         this.pens[cellIndex] = Array()
         var icellGroups = Array()
         for (var groupIndex = 0; groupIndex < 27; groupIndex++) {
-          if (this.groups[groupIndex].indexOf(cellIndex) >= 0)
+          if (groups[groupIndex].indexOf(cellIndex) >= 0)
             icellGroups.push(groupIndex)
         }
         this.cellGroups[cellIndex] = icellGroups;
@@ -72,7 +57,7 @@ export class StrategyFinder {
     penCounts(groupIndex) {
       var penCounts = Array()
   
-      var groupCells = this.groups[groupIndex]
+      var groupCells = groups[groupIndex]
       groupCells.forEach(cellIndex => {
         this.pens[cellIndex].forEach(pen => {
           if (penCounts[pen] === undefined) {
@@ -136,7 +121,7 @@ export class StrategyFinder {
         var rowOffset = 0
         while (rowOffset < 3) {
           var rowData = Array()
-          var groupCells = this.groups[boxOffset * 3 + rowOffset]
+          var groupCells = groups[boxOffset * 3 + rowOffset]
   
           for (var cellIndex = 0; cellIndex < 9; cellIndex++) {
             var tripleIndex = (cellIndex - cellIndex % 3) / 3
@@ -157,7 +142,7 @@ export class StrategyFinder {
               if (boxDataIndex != cboxDataIndex) {
                 var otherTrippleIndex = boxData.indexOf(tripleIndex)
                 if (otherTrippleIndex >= 0) {
-                  var groupCells = this.groups[boxOffset * 3 + boxDataIndex]
+                  var groupCells = groups[boxOffset * 3 + boxDataIndex]
                   var cellFirstIndex = tripleIndex * 3
                   var counter = 0;
                   while (counter < 3) {
@@ -169,7 +154,7 @@ export class StrategyFinder {
                     cellFirstIndex++
                     counter++
                   }
-                  groupCells = this.groups[boxOffset * 3 + cboxDataIndex]
+                  groupCells = groups[boxOffset * 3 + cboxDataIndex]
                   var cellFirstIndex = tripleIndex * 3
                   var counter = 0;
                   while (counter < 3) {
@@ -211,7 +196,7 @@ export class StrategyFinder {
             if(boxData[trippleRow].length > 1)
               {
                 
-                var groupCells = this.groups[boxOffset*3+trippleRow]
+                var groupCells = groups[boxOffset*3+trippleRow]
                for(var searchCellIndex=tripleIndex*3;searchCellIndex<(tripleIndex+1)*3;searchCellIndex++)
                 {
                   var searchCell = groupCells[searchCellIndex]
@@ -257,7 +242,7 @@ export class StrategyFinder {
         var rowOffset = 0
         while (rowOffset < 3) {
           var rowData = Array()
-          var groupCells = this.groups[9 + boxOffset * 3 + rowOffset]
+          var groupCells = groups[9 + boxOffset * 3 + rowOffset]
   
           for (var cellIndex = 0; cellIndex < 9; cellIndex++) {
             var tripleIndex = (cellIndex - cellIndex % 3) / 3
@@ -278,7 +263,7 @@ export class StrategyFinder {
               if (boxDataIndex != cboxDataIndex) {
                 var otherTrippleIndex = boxData.indexOf(tripleIndex)
                 if (otherTrippleIndex >= 0) {
-                  var groupCells = this.groups[9 + boxOffset * 3 + boxDataIndex]
+                  var groupCells = groups[9 + boxOffset * 3 + boxDataIndex]
                   var cellFirstIndex = tripleIndex * 3
                   var counter = 0;
                   while (counter < 3) {
@@ -290,7 +275,7 @@ export class StrategyFinder {
                     cellFirstIndex++
                     counter++
                   }
-                  groupCells = this.groups[9 + boxOffset * 3 + cboxDataIndex]
+                  groupCells = groups[9 + boxOffset * 3 + cboxDataIndex]
                   var cellFirstIndex = tripleIndex * 3
                   var counter = 0;
                   while (counter < 3) {
@@ -333,7 +318,7 @@ export class StrategyFinder {
             if(boxData[trippleRow].length > 1)
               {
                 
-                var groupCells = this.groups[9+boxOffset*3+trippleRow]
+                var groupCells = groups[9+boxOffset*3+trippleRow]
                for(var searchCellIndex=tripleIndex*3;searchCellIndex<(tripleIndex+1)*3;searchCellIndex++)
                 {
                   var searchCell = groupCells[searchCellIndex]
@@ -375,7 +360,7 @@ export class StrategyFinder {
     getHiddenNaked(groupIndex) {
       this.hiddenNakedSelectedCells = Array()
       var penCells = Array()
-      this.groups[groupIndex].forEach(cellIndex => {
+      groups[groupIndex].forEach(cellIndex => {
         if (this.pens[cellIndex].length > 0)
           penCells.push(cellIndex);
   
@@ -533,7 +518,7 @@ export class StrategyFinder {
       var retVal = -1
       this.cellGroups[cellIndex].forEach(groupIndex => {
   
-        this.groups[groupIndex].forEach(gFirstCellIndex => {
+        groups[groupIndex].forEach(gFirstCellIndex => {
   
   
   
@@ -690,6 +675,113 @@ export class StrategyFinder {
       return -1
     
     }
+    getNextXChain()
+    {
+    if(this.linkIndexes.length==0)
+      {
+        this.linkIndexes.push(0)
+        this.linkTypes.push(0)
+        return  this.getNextXChain();
+      }
+    else
+      {
+        var mandatoryHard = (this.linkIndexes.length & 1) == 0;
+       if (!mandatoryHard) // ja var būt arī softlink
+       {
+
+           for (var linkIndex = 0; linkIndex < this.softlinksFirst.length; linkIndex++) {
+               if (!this.linkWasUsed(linkIndex,  1) && this.canAppendLink(linkIndex,  1)) {
+                   this.linkIndexes.push(linkIndex);
+                   return true;
+               }
+           }
+
+
+       }
+
+       for (var linkIndex = 0; linkIndex < this.hardLinksFirst.length; linkIndex++) {
+           if (!this.linkWasUsed(linkIndex,0) && this.canAppendLink(linkIndex,0)) {
+               this.linkIndexes.push(linkIndex)
+               return true
+           }
+       }
+       do{
+        var lastlinkIndexIndex = this.linkIndexes.length - 1;
+        var linkIndex = this.linkIndexes[lastlinkIndexIndex]
+        var linkType = this.linkTypes[lastlinkIndexIndex]
+        this.linkIndexes.splice(lastlinkIndexIndex,1);
+        this.linkTypes.splice(lastlinkIndexIndex,1);
+        //  mandatoryHard = (linkIndexes.size()&1) == 1;
+        linkIndex++;
+        if ((linkType & 1) == 1) {
+          while (linkIndex < this.softlinksFirst.lengt) // meklejam nakošo iespējamo linku
+          {
+              if (!this.linkWasUsed(linkIndex,  1) && this.canAppendLink(linkIndex,  1)) {
+                  this.linkIndexes.push(linkIndex)
+                  return true
+              }
+              linkIndex++
+          }
+          linkIndex = 0;
+          while (linkIndex < this.hardLinksFirst.length) // meklejam nakošo iespējamo linku
+          {
+              if (!this.linkWasUsed(linkIndex,  0) && this.canAppendLink(linkIndex, 0)) {
+                  linkIndexes.push(linkIndex)
+                  return true
+              }
+              linkIndex++
+          }
+
+
+           
+        }
+        else{
+
+          if(this.linkIndexes.length == 0)
+            {
+                if((linkType & 2) ==0  )
+                {
+                  this.linkIndexes.push(linkIndex-1)
+                  this.linkTypes.push(2)
+                  return true;
+                }
+               if(linkIndex < this.hardLinksFirst.length)
+               {
+                   this.linkIndexes.push(linkIndex)
+                   this.linkTypes.push(0)
+                   return true;
+               }
+            }
+            while (linkIndex < this.hardLinksFirst.length) // meklejam nakošo iespējamo linku
+            {
+                if (!this.linkWasUsed(linkIndex,0) && this.canAppendLink(linkIndex,0)) {
+                    this.linkIndexes.push(linkIndex)
+                    return true
+                }
+                linkIndex++
+            }
+        }
+          
+       }while(this.linkIndexes.length>1)
+
+        if(this.linkIndexes.length==1) {
+          var linkIndex = this.linkIndexes[0];
+          if (linkIndex < this.hardLinksFirst.length - 1) {
+              this.linkIndexes[0] = linkIndex + 1
+              this.linkTypes[0] = 0
+              return this.getNextXChain()
+          }
+      }
+
+
+      }
+     return false
+
+    }
+
+
+    
+    
   
     findCellLinkByPen(cellIndex,pen,exceptionCells)
     {
@@ -697,7 +789,7 @@ export class StrategyFinder {
       for(var cellGroupsIndex in this.cellGroups[cellIndex])
         {
             var groupIndex = this.cellGroups[cellIndex][cellGroupsIndex]
-            var groupCells = this.groups[groupIndex]
+            var groupCells = groups[groupIndex]
             for(var gCellIndex=0;gCellIndex<9;gCellIndex++)
             {
              var firstCellIndex = groupCells[gCellIndex] 
@@ -737,7 +829,7 @@ export class StrategyFinder {
                   var linkGroup = this.isCellsLinked(firstCell,secondCell) 
                     if(linkGroup >=0 )
                       {
-                      var searchHard =  this.groups[linkGroup].find((linkcellIndex)=>{
+                      var searchHard =  groups[linkGroup].find((linkcellIndex)=>{
                           if(linkcellIndex != firstCell  
                             && linkcellIndex != secondCell 
                           && this.pens[linkcellIndex].indexOf(pen)>=0)
@@ -781,7 +873,7 @@ export class StrategyFinder {
                   var linkGroup = this.isCellsLinked(firstCell,secondCell) 
                     if(linkGroup >=0 )
                       {
-                      var searchHard =  this.groups[linkGroup].find((linkcellIndex)=>{
+                      var searchHard =  groups[linkGroup].find((linkcellIndex)=>{
                           if(linkcellIndex != firstCell  
                             && linkcellIndex != secondCell 
                           && this.pens[linkcellIndex].indexOf(pen)>=0)
@@ -857,9 +949,9 @@ getFinXWing(groupIndex)
                                         exceptList.push(secondPenCounts[pen][1]);
                                         exceptList.push(secondPenCounts[pen][2]);
                                         var squareGroupIndex = this.findSquareGroup(fiftCellIndex)
-                                        var searchFift = this.groups[squareGroupIndex].find ( (searchCellIndex) =>  {
+                                        var searchFift = groups[squareGroupIndex].find ( (searchCellIndex) =>  {
                                             if (exceptList.indexOf(searchCellIndex) <0  && this.pens[searchCellIndex].indexOf(pen)>=0) {
-                                                if (this.groups[firstCol + 9].indexOf(searchCellIndex) >=0 || this.groups[secondCol + 9].indexOf(searchCellIndex)>=0) {
+                                                if (groups[firstCol + 9].indexOf(searchCellIndex) >=0 || groups[secondCol + 9].indexOf(searchCellIndex)>=0) {
                                                     this.strategyCells = exceptList
                                                     this.strategyUsableCells = [searchCellIndex]
                                                     this.strategyPens[searchCellIndex] = [pen]
@@ -960,7 +1052,7 @@ getFinXWing(groupIndex)
             {
               for(var otherGroupIndex=groupIndex+1;otherGroupIndex<8;otherGroupIndex++)
                 {
-                 var otherCells = this.groups[otherGroupIndex]
+                 var otherCells = groups[otherGroupIndex]
                  var firstCol =  penCells[0]%9
                  var secondCol =  penCells[1]%9 
              var otherCell =  otherCells.find((otherCell)=>{
@@ -978,7 +1070,7 @@ getFinXWing(groupIndex)
               if(otherCell == undefined )
                 {
                   var checkGroup = 9 + firstCol
-                  var usableCell = this.groups[checkGroup].find((usableCell)=>{
+                  var usableCell = groups[checkGroup].find((usableCell)=>{
                     return (usableCell - usableCell%9)/9 != groupIndex && (usableCell - usableCell%9)/9 != otherGroupIndex
                       && this.pens[usableCell].indexOf(pen) >=0
                   })  
@@ -995,7 +1087,7 @@ getFinXWing(groupIndex)
                     }
   
                      checkGroup = 9 + secondCol
-                   usableCell = this.groups[checkGroup].find((usableCell)=>{
+                   usableCell = groups[checkGroup].find((usableCell)=>{
                     return (usableCell - usableCell%9)/9 != groupIndex && (usableCell - usableCell%9)/9 != otherGroupIndex
                       && this.pens[usableCell].indexOf(pen) >=0
                   })  
@@ -1037,7 +1129,7 @@ getFinXWing(groupIndex)
               {
                 for(var otherGroupIndex=groupIndex+1;otherGroupIndex<18;otherGroupIndex++)
                   {
-                   var otherCells = this.groups[otherGroupIndex]
+                   var otherCells = groups[otherGroupIndex]
                    var firstCol =  (penCells[0] - penCells[0]%9)/9
                    var secondCol = ( penCells[1] - penCells[1]%9)/9 
                var otherCell =  otherCells.find((otherCell)=>{
@@ -1055,7 +1147,7 @@ getFinXWing(groupIndex)
                 if(otherCell == undefined )
                   {
                     var checkGroup =  firstCol
-                    var usableCell = this.groups[checkGroup].find((usableCell)=>{
+                    var usableCell = groups[checkGroup].find((usableCell)=>{
                       return usableCell%9 != groupIndex-9 && usableCell%9 != otherGroupIndex-9
                         && this.pens[usableCell].indexOf(pen) >=0
                     })  
@@ -1072,7 +1164,7 @@ getFinXWing(groupIndex)
                       }
   
                        checkGroup = secondCol
-                       usableCell = this.groups[checkGroup].find((usableCell)=>{
+                       usableCell = groups[checkGroup].find((usableCell)=>{
                         return usableCell%9 != groupIndex-9 && usableCell%9 != otherGroupIndex-9
                           && this.pens[usableCell].indexOf(pen) >=0
                       })  
@@ -1127,6 +1219,50 @@ getFinXWing(groupIndex)
         }
         return -1
   }
+
+  findXChain()
+    {
+      for (var linkPenValue = 1; linkPenValue < 10; linkPenValue++) {
+        this.fillTwoPenGroups(linkPenValue); // sameklejam stronglinkus
+
+        if(this.hardLinksFirst.length< 2)
+            continue;
+        if(this.hardLinksFirst.length == 2  && this.softlinksFirst.length ==0 )
+            continue;
+        this.linkIndexes = Array()
+        this.linkTypes = Array()
+
+        while(this.getNextXChain())
+          {
+            if((this.linkTypes[this.linkTypes.length-1] & 1) == 1 )
+              continue;
+          if(this.linkIndexes.length < 3 || this.linkIndexes.lengt % 2 ==0 )
+              continue;
+          if(!this.checkLinkTypes())
+              continue;
+          var cellList = this.getXChainCells();
+          var cell = this.checkForXChain(cellList,linkPenValue)
+          if(cell>=0 )
+          {
+              this.hardLinksFirst = Array()
+              this.hardLinksSecond = Array()
+              this.softlinksFirst = Array()
+              this.softlinksSecond = Array()
+
+              cellList.forEach(index => {
+                this.strategyCells.push(index)
+              })
+
+              this.strategyUsableCells.push(cell);
+              this.strategyPens[cell] = [linkPenValue]
+              return 14;
+           }
+          }
+        }
+        return -1
+
+      }
+      
   
     findStrategies() {
   
@@ -1164,7 +1300,273 @@ getFinXWing(groupIndex)
   if (result >= 0)
     return result
 
+  result = this.findXChain()
+  if (result >= 0)
+    return result
+
+
       return result
+    }
+
+    checkForXChain(cellList,pen)
+    {
+
+      for( var cell=0;cell<81;cell++)
+        {
+            if(cellList.indexOf(cell) < 0
+                    &&  this.isCellsLinked(cellList[0],cell)
+                    && this.isCellsLinked(cellList[cellList.length-1],cell)
+                    && this.pens[cell].indexOf(pen) >=0  )
+                return cell;
+        }
+
+        return -1;
+    }
+
+    checkLinkTypes()
+    {
+      for(var typeIndex=0;typeIndex<this.linkTypes.length;typeIndex++) {
+        if (this.linkTypes[typeIndex] == 1 && (typeIndex & 1) ==0  )
+            return false;
+    }
+     return true;
+
+    }
+
+    getXChainCells()
+    {
+      var cellList=Array();
+      for(var linkIndex=0;linkIndex<this.linkIndexes.length;linkIndex++)
+      {
+          var linkType = this.linkTypes[linkIndex]
+          var currentLinkIndex =  this.linkIndexes[linkIndex]
+          if((linkType &1) == 1)
+          {
+              if((linkType & 2) == 2)
+              {
+                  cellList.push(this.softlinksSecond[currentLinkIndex])
+              }else{
+
+                  cellList.push(this.softlinksFirst[currentLinkIndex])
+              }
+
+
+          }else
+          {
+              if((linkType & 2) == 2)
+              {
+                cellList.push(this.hardLinksSecond[currentLinkIndex])
+              }else{
+
+                cellList.push(this.hardLinksFirst[currentLinkIndex])
+              }
+          }
+
+          if(linkIndex == this.linkIndexes.length-1 )
+          {
+              if((linkType &1) == 1)
+              {
+                  if((linkType & 2) == 2)
+                  {
+                    cellList.push(this.softlinksFirst[currentLinkIndex])
+                  }else{
+
+                    cellList.push(this.softlinksSecond[currentLinkIndex])
+                  }
+
+
+              }else
+              {
+                  if((linkType & 2) == 2)
+                  {
+                    cellList.push(this.hardLinksFirst[currentLinkIndex])
+                  }else{
+
+                    cellList.push(this.hardLinksSecond[currentLinkIndex])
+                  }
+              }
+
+
+
+          }
+
+
+      }
+      return  cellList;
+    }
+
+    getLastCell()
+    {
+    
+       var lastLinkIndex = this.linkIndexes[this.linkIndexes.length-1]
+       var lastLinkType = this.linkTypes[this.linkTypes.lengt-1]
+       if((lastLinkType & 1) == 1 ) // ja ir softlinks
+       {
+           if((lastLinkType & 2) == 2 ) //ja ir ačgārnais links
+           {
+               return this.softlinksFirst[lastLinkIndex]
+           }else
+               return this.softlinksSecond[lastLinkIndex]
+       }else // ja ir hardlinks
+           {
+               if((lastLinkType & 2) == 2 ) //ja ir ačgārnais links
+               {
+                   return this.hardLinksFirst[lastLinkIndex]
+               }else
+                   return this.hardLinksSecond[lastLinkIndex]
+           }
+    }
+
+canAppendLink(linkIndex,hardLink)
+{
+  var lastCell = this.getLastCell();
+  if(hardLink == 0) { // vai ir hardlinks
+      if (this.hardLinksFirst[linkIndex] == lastCell) {
+          this.linkTypes.push(0)
+          return true
+      } else if (this.hardLinksSecond[linkIndex] == lastCell) {
+          this.linkTypes.push(2)
+          return true
+      }
+  }else {  // softlinks
+      if (this.softlinksFirst[linkIndex] == lastCell) {
+          this.linkTypes.push(1)
+          return true
+      } else if (this.softlinksSecond[linkIndex] == lastCell) {
+          this.linkTypes.push(3)
+          return true
+      }
+
+  }
+     return false
+}
+ linkWasUsed( linkIndex, hardLink ) // vai links jau ir ķēdē (otrais arguments link tipa pirmais bits)
+{
+    for(var linkIndexIndex=0;linkIndexIndex<this.linkIndexes.length;linkIndexIndex++)
+    {
+       var usedIndex = this.linkIndexes[linkIndexIndex]
+       var usedIndexType = this.linkTypes[linkIndexIndex]
+       if(usedIndex == linkIndex  &&   (usedIndexType & 1) == hardLink )
+       {
+           return true;
+       }
+    }
+    return false;
+}
+
+
+    fillTwoPenGroups(pen)
+    {
+       
+      this.hardLinkPens = Array()
+      this.hardLinkGroups = Array()
+      this.hardLinksFirst = Array()
+      this.hardLinksSecond = Array()
+      this.softlinksFirst = Array()
+      this.softlinksSecond = Array()
+
+      for(var cellIndex=0;cellIndex<80;cellIndex++)
+      {
+        for(var cellSecondIndex=cellIndex+1;cellSecondIndex<81;cellSecondIndex++)
+          {
+            var penFound = false;
+            var cellsHaveGroup = false;
+            for(var cellsGroupIndex=0;cellsGroupIndex<3;cellsGroupIndex++)
+            {
+              var groupIndex = this.cellGroups[cellIndex][cellsGroupIndex]
+              if( groupIndex == this.cellGroups[cellSecondIndex][cellsGroupIndex] )
+                {
+                  cellsHaveGroup = true
+                  for(var groupCellIndex=0;groupCellIndex<9;groupCellIndex++)
+                  {
+                      var testCellIndex = groups[groupIndex][groupCellIndex]
+                      if(this.pens[testCellIndex].indexOf(pen)>=0 && testCellIndex != cellIndex  && testCellIndex != cellSecondIndex   )
+                      {
+                          penFound = true;
+                          break;
+                      }
+                  }
+
+                  if(penFound)
+                      break;
+
+
+                }
+
+            }
+
+            if( cellsHaveGroup && !penFound  &&   this.pens[cellIndex].indexOf(pen)>=0
+             && this.pens[cellSecondIndex].indexOf(pen)>=0 )
+              {
+                  this.hardLinksFirst.push(cellIndex);
+                  this.hardLinksSecond.push(cellSecondIndex);
+
+              }
+
+          }
+      }
+      for(var firstPairIndex=0;firstPairIndex<this.hardLinksFirst.length-1;firstPairIndex++)
+        {
+          for(var secondPairIndex=firstPairIndex+1;secondPairIndex<this.hardLinksFirst.length;secondPairIndex++)
+            {
+              var firstCell = this.hardLinksFirst[firstPairIndex]
+              var secondCell = this.hardLinksFirst[secondPairIndex]
+
+              this.fillSoftlinks(firstCell,secondCell, pen);
+
+              firstCell = this.hardLinksFirst[firstPairIndex]
+              secondCell = this.hardLinksSecond[secondPairIndex]
+
+              this.fillSoftlinks(firstCell,secondCell, pen);
+
+              firstCell = this.hardLinksSecond[firstPairIndex]
+              secondCell = this.hardLinksFirst[secondPairIndex]
+              this.fillSoftlinks(firstCell,secondCell, pen);
+              firstCell = this.hardLinksSecond[firstPairIndex]
+              secondCell = this.hardLinksSecond[secondPairIndex]
+
+              this.fillSoftlinks(firstCell,secondCell, pen);
+
+
+            }
+
+        }
+
+  
+    }
+    fillSoftlinks(firstCell,secondCell,pen)
+    {
+    
+      if(this.cellGroups[firstCell][0]==this.cellGroups[secondCell][0])
+        {
+            var groupPens = this.penCounts(this.cellGroups[firstCell][0]);
+            if(groupPens[pen].length >2)
+            {
+                this.softlinksFirst.push(firstCell);
+                this.softlinksSecond.push(secondCell);
+            }
+
+        }
+        if(this.cellGroups[firstCell][1]==this.cellGroups[secondCell][1])
+          {
+              var groupPens = this.penCounts(this.cellGroups[firstCell][1]);
+              if(groupPens[pen].length >2)
+              {
+                  this.softlinksFirst.push(firstCell);
+                  this.softlinksSecond.push(secondCell);
+              }
+  
+          }
+          if(this.cellGroups[firstCell][2]==this.cellGroups[secondCell][2])
+            {
+                var groupPens = this.penCounts(this.cellGroups[firstCell][2]);
+                if(groupPens[pen].length >2)
+                {
+                    this.softlinksFirst.push(firstCell);
+                    this.softlinksSecond.push(secondCell);
+                }
+    
+            }
     }
 
     findSquareGroup(cellIndex)
