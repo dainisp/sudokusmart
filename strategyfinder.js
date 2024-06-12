@@ -726,7 +726,7 @@ export class StrategyFinder {
           while (linkIndex < this.hardLinksFirst.length) // meklejam nakošo iespējamo linku
           {
               if (!this.linkWasUsed(linkIndex,  0) && this.canAppendLink(linkIndex, 0)) {
-                  linkIndexes.push(linkIndex)
+                  this.linkIndexes.push(linkIndex)
                   return true
               }
               linkIndex++
@@ -1236,12 +1236,14 @@ getFinXWing(groupIndex)
           {
             if((this.linkTypes[this.linkTypes.length-1] & 1) == 1 )
               continue;
-          if(this.linkIndexes.length < 3 || this.linkIndexes.lengt % 2 ==0 )
+          
+          if(this.linkIndexes.length < 3 || (this.linkIndexes.length % 2) ==0 )
               continue;
           if(!this.checkLinkTypes())
               continue;
           var cellList = this.getXChainCells();
-          var cell = this.checkForXChain(cellList,linkPenValue)
+          var checkCellList=[cellList[0],cellList[cellList.length-1]]
+          var cell = this.getLinkedCell(checkCellList,linkPenValue,cellList)
           if(cell>=0 )
           {
               this.hardLinksFirst = Array()
@@ -1399,7 +1401,7 @@ getFinXWing(groupIndex)
     {
     
        var lastLinkIndex = this.linkIndexes[this.linkIndexes.length-1]
-       var lastLinkType = this.linkTypes[this.linkTypes.lengt-1]
+       var lastLinkType = this.linkTypes[this.linkTypes.length-1]
        if((lastLinkType & 1) == 1 ) // ja ir softlinks
        {
            if((lastLinkType & 2) == 2 ) //ja ir ačgārnais links
@@ -1536,7 +1538,8 @@ canAppendLink(linkIndex,hardLink)
     }
     fillSoftlinks(firstCell,secondCell,pen)
     {
-    
+    if(firstCell == secondCell)
+       return
       if(this.cellGroups[firstCell][0]==this.cellGroups[secondCell][0])
         {
             var groupPens = this.penCounts(this.cellGroups[firstCell][0]);
