@@ -151,6 +151,45 @@ export class GameField {
       });
     }
   
+showStrategyResults(strategyFinder,result)
+{
+  if(strategyFinder.strategyLinks[result] === undefined )
+  $("#strategylabel")[0].innerText = "Strategy " + strategyFinder.strategyNames[result]
+  else{
+    $("#strategylabel")[0].innerText = "Strategy "
+    $("#strategylink").attr("href",strategyFinder.strategyLinks[result]);
+    $("#strategylink")[0].innerText = strategyFinder.strategyNames[result]  
+  }
+  if (this.strategyResults === undefined)
+    this.strategyResults = this.draw.group().back()
+  strategyFinder.strategyCells.forEach(cellIndex => {
+    var col = cellIndex % 9
+    var row = (cellIndex - col) / 9
+    this.strategyResults.rect(90, 90).move(col * 90, row * 90).fill(this.strategyCellColor)
+  });
+  strategyFinder.strategyUsableCells.forEach(cellIndex => {
+    var col = cellIndex % 9
+    var row = (cellIndex - col) / 9
+    this.strategyResults.rect(90, 90).move(col * 90, row * 90).fill(this.strategyUsableCellColor)
+  });
+
+
+
+  this.strategyPens = strategyFinder.strategyPens
+
+  for (var cellIndex in this.strategyPens) {
+    var cellPens = this.strategyPens[cellIndex]
+    for (var penIndex = 0; penIndex < cellPens.length; penIndex++) {
+      if (cellPens[penIndex] !== undefined) {
+        var penId = "#pen" + cellIndex + "_" + cellPens[penIndex]
+        this.draw.find(penId).fill(this.strategyPenColor)
+      }
+    };
+  }
+
+
+}
+
     onStrategyClick() {
   
       var strategyFinder = new StrategyFinder(this.pens)
@@ -158,41 +197,15 @@ export class GameField {
       if (result < 0)
         $("#strategylabel")[0].innerText = "Strategy unknown"
       else {
-        // alert("Found strategy " + strategyFinder.strategyNames[result])
-        $("#strategylabel")[0].innerText = "Strategy " + strategyFinder.strategyNames[result]
-        if (this.strategyResults === undefined)
-          this.strategyResults = this.draw.group().back()
-        strategyFinder.strategyCells.forEach(cellIndex => {
-          var col = cellIndex % 9
-          var row = (cellIndex - col) / 9
-          this.strategyResults.rect(90, 90).move(col * 90, row * 90).fill(this.strategyCellColor)
-        });
-        strategyFinder.strategyUsableCells.forEach(cellIndex => {
-          var col = cellIndex % 9
-          var row = (cellIndex - col) / 9
-          this.strategyResults.rect(90, 90).move(col * 90, row * 90).fill(this.strategyUsableCellColor)
-        });
   
-  
-  
-        this.strategyPens = strategyFinder.strategyPens
-  
-        for (var cellIndex in this.strategyPens) {
-          var cellPens = this.strategyPens[cellIndex]
-          for (var penIndex = 0; penIndex < cellPens.length; penIndex++) {
-            if (cellPens[penIndex] !== undefined) {
-              var penId = "#pen" + cellIndex + "_" + cellPens[penIndex]
-              this.draw.find(penId).fill(this.strategyPenColor)
-            }
-          };
-        }
-  
+        this.showStrategyResults(strategyFinder,result)
   
       }
     }
   
     clearStrategyResults() {
       $("#strategylabel")[0].innerText = ""
+      $("#strategylink")[0].innerText = ""
       if (this.strategyPens !== undefined) {
         for (var cellIndex in this.strategyPens) {
           var cellPens = this.strategyPens[cellIndex];

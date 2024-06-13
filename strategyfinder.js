@@ -8,6 +8,7 @@ export class StrategyFinder {
     strategyUsableCells = Array()
     strategyPens = Array()
     strategyNames = Array()
+    strategyLinks = Array()
     hiddenNakedSelectedCells = Array()
     hiddenNakedIsHidden = false
     //needed for xChain
@@ -41,6 +42,23 @@ export class StrategyFinder {
       
       this.strategyNames[-1] = "Unknown"
   
+
+      this.strategyLinks = {
+        1:"https://hodoku.sourceforge.net/en/tech_intersections.php#lc2",
+        2:"https://hodoku.sourceforge.net/en/tech_intersections.php",
+        3:"https://hodoku.sourceforge.net/en/tech_naked.php#n2n2",
+        4:"https://hodoku.sourceforge.net/en/tech_hidden.php",
+        5:"https://hodoku.sourceforge.net/en/tech_naked.php#n3n3",
+        6:"https://hodoku.sourceforge.net/en/tech_hidden.php#h3",
+        7:"https://hodoku.sourceforge.net/en/tech_naked.php#n4",
+        8:"https://hodoku.sourceforge.net/en/tech_hidden.php#h4",
+        9:"https://hodoku.sourceforge.net/en/tech_wings.php",
+        10:"https://hodoku.sourceforge.net/en/tech_wings.php#xyz",
+        11:"https://hodoku.sourceforge.net/en/tech_fishb.php#bf2",
+        12:"https://hodoku.sourceforge.net/en/tech_wings.php#w",
+        13:"https://hodoku.sourceforge.net/en/tech_fishfs.php#fbf2",
+        14:"https://hodoku.sourceforge.net/en/tech_chains.php#x",
+      }
   
       for (var cellIndex = 0; cellIndex < 81; cellIndex++) {
         this.pens[cellIndex] = Array()

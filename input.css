@@ -20,8 +20,14 @@ div.buttons {
     align-items: center;
 }
 
+
 span.checklabel {
     border-right: 10px solid white;
+}
+a#strategylink
+{
+   
+    border-left: 10px solid white;
 }
 
 button#strategybutton {
@@ -34,6 +40,7 @@ button#strategybutton {
 
 label.strategylabel {
     border-left: 10px solid white;
+   
 }
 
 #gametime {
