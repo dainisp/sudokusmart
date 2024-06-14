@@ -4,6 +4,12 @@
     margin-right: auto;
 }
 
+.svg_center {
+    max-width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 img.buttonimage {
     width: 0.75cm;
     height: 0.75cm;
@@ -24,9 +30,9 @@ div.buttons {
 span.checklabel {
     border-right: 10px solid white;
 }
-a#strategylink
-{
-   
+
+a#strategylink {
+
     border-left: 10px solid white;
 }
 
@@ -40,7 +46,7 @@ button#strategybutton {
 
 label.strategylabel {
     border-left: 10px solid white;
-   
+
 }
 
 #gametime {
@@ -58,4 +64,5 @@ svg {
     left: 0;
     opacity: 0.6;
     visibility: hidden;
+    max-width: 100%;
 }
