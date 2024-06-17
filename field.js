@@ -64,6 +64,8 @@ export function onNewGameClick() {
   var level = levelEl.value
   const sudoku = getSudoku(level)
   gameField.loadNewGame(sudoku)
+  var levelName = level.charAt(0).toUpperCase() + level.slice(1) 
+  gameField.setGameLevel(levelName)
 }
 
 export function onUploadClick() {
@@ -84,6 +86,14 @@ export function onUploadClick() {
 
   downloadLink.style.display = 'none';
   downloadLink.click();
+}
+
+export function doEndGameModalClose()
+{
+
+  var modal = $("#endgamemodal")[0]
+  modal.style.display = "none";
+
 }
 
 setInterval(function () {

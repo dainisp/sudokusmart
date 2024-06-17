@@ -35,8 +35,10 @@ export class GameField {
     selOpacity = 0.5
     timerOn = false
     cellGroups = Array()
-  
-  
+    gameLevel = "Expert"
+    helpRequests = 0
+    wrongNumbers = 0
+
     static loadFromJson(fieldJson) {
       var gameField = new GameField()
       gameField.loadGameJson(fieldJson)
@@ -48,7 +50,10 @@ export class GameField {
     x.volume = 0.5
     x.play()   
   }
-  
+   setGameLevel(level)
+   {
+    this.gameLevel = level
+   }
   
     loadGameJson(gameJson) {
       this.clearGame()
@@ -191,13 +196,13 @@ showStrategyResults(strategyFinder,result)
 }
 
     onStrategyClick() {
-  
+      
       var strategyFinder = new StrategyFinder(this.pens)
       var result = strategyFinder.findStrategies()
       if (result < 0)
         $("#strategylabel")[0].innerText = "Strategy unknown"
       else {
-  
+        this.helpRequests++
         this.showStrategyResults(strategyFinder,result)
   
       }
@@ -276,6 +281,7 @@ showStrategyResults(strategyFinder,result)
           if (otherCellIndex >= 0)
             this.onCellClick(otherCellIndex)
           if (this.solved.length == 81 && this.solved[this.selectedCell] != value) {
+            this.wrongNumbers++
             alert("wrong value!")
             return
           }
@@ -283,25 +289,41 @@ showStrategyResults(strategyFinder,result)
   
             this.placeCell(this.selectedCell, value)
             if (this.checkDone())
-              {
-                this.playEndGame()
-               // videojs(document.querySelector('video')).overlay();
-               var video = $("#video")[0]
-               video.style.visibility='visible'
-               video.play()
-               setTimeout(function(){
-                video.pause();
-                video.style.visibility='hidden'
-            }, 5000); 
-               this.timerOn = false
-                alert("Good, you are winner!!!")
-              }
+              this.showEndGame()
+            else
             this.addValueSelections(value)
           }
         }
       }
     }
-  
+  showEndGame()
+  {
+    this.playEndGame()
+    // videojs(document.querySelector('video')).overlay();
+    var video = $("#video")[0]
+    video.style.visibility='visible'
+    video.play()
+    setTimeout(function(){
+     video.pause();
+     video.style.visibility='hidden'
+ }, 5000); 
+    this.timerOn = false
+    $("#gamelevel")[0].innerText = " " + this.gameLevel
+    $("#helpnumberscount")[0].innerText = " " +  this.helpRequests
+    $("#timepayed")[0].innerText = " " +  $("#gametime")[0].innerText
+    $("#wrongnumberscount")[0].innerText = " " +  this.wrongNumbers
+    
+    $("#endgamemodal")[0].style.display = "block"; 
+    
+/*  
+<div><span>Game level:</span><span id="gamelevel" >Easy</span></div>
+      <div><span>Time played:</span><span id="timepayed" >02:04</span></div>
+      <div><span>Wrong numbers quesed:</span><span id="wrongnumberscount" >2</span></div>
+      <div><span>Help requests:</span><span id="helpnumberscount" >3</span></div>
+*/
+
+
+  }
     setDraw(draw) {
   
       this.draw = draw
@@ -425,7 +447,8 @@ showStrategyResults(strategyFinder,result)
   
     }
     loadNewGame(sudoku) {
-  
+      this.helpRequests = 0
+      this.wrongNumbers = 0
       this.clearGame()
       var solvedStr = sudoku["solution"]
       if (this.solved.length > 0)

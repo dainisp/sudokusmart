@@ -11,7 +11,9 @@
 <body>
   <div id="app"></div>
   <script type="module" src="/main.js"></script>
+  
   <div id="field" class="svg_center">
+    <div>
     <svg id="svgtag" class="scaled-path-svg" width="100%" viewBox="-2 -2 814 814" xmlns="http://www.w3.org/2000/svg">
       <line x1="0" y1="0" x2="810" y2="0" style="stroke:red;stroke-width:4" />
       <line x1="810" y1="0" x2="810" y2="810" style="stroke:red;stroke-width:4" />
@@ -37,7 +39,7 @@
       <line x1="0" y1="630" x2="810" y2="630" style="stroke:red;stroke-width:1" />
       <line x1="0" y1="720" x2="810" y2="720" style="stroke:red;stroke-width:1" />
     </svg>
-  </div>
+ 
   <div id="buttonbox" class="center">
     <div class="buttons">
       <span class="checklabel">
@@ -79,6 +81,8 @@
       <input type='file' id='file-input' />
     </div>
   </div>
+  </div>
+</div>
   <div id="cookieNotice" class="light display-right" style="display: none;">
     <div id="closeIcon" style="display: none;">
     </div>
@@ -96,6 +100,19 @@
       </div>
     </div>
   </div>
+  <div id="endgamemodal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span id="modalclose" class="close">&times;</span>
+      <h2>Good, you have won!!!</h2>
+      <div><span>Game level:</span><span id="gamelevel" > Easy</span></div>
+      <div><span>Time played:</span><span id="timepayed" >02:04</span></div>
+      <div><span>Wrong numbers quesed:</span><span id="wrongnumberscount" >2</span></div>
+      <div><span>Help requests:</span><span id="helpnumberscount" >3</span></div>
+    </div>
+  </div>
+
   <audio id="audio">
     <source src="./dong.mp3" type="audio/mpeg">
     Your browser does not support the audio element.

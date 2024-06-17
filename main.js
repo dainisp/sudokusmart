@@ -3,7 +3,7 @@ import './input.css'
 import jQuery from 'jquery'
 window.$ = jQuery
 
-import { onNewGameClick, cellClick,doNumberClick,onStrategyClick,onUploadClick } from './field.js'
+import { onNewGameClick, cellClick,doNumberClick,onStrategyClick,onUploadClick,doEndGameModalClose } from './field.js'
 import {acceptCookieConsent} from "./cookies.js"
 
 document.getElementById("newgame").addEventListener('click', onNewGameClick)
@@ -15,5 +15,6 @@ document.querySelectorAll("input.numberbutton").forEach(element => {
 document.getElementById("strategybutton").addEventListener('click', onStrategyClick)
 document.getElementById("savegame").addEventListener('click', onUploadClick)
 document.getElementById("cookieaccept").addEventListener('click', acceptCookieConsent)
+document.getElementById("modalclose").addEventListener('click', doEndGameModalClose)
 //cookieaccept
 //savegame
