@@ -77,22 +77,26 @@ svg {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0); /* Black w/ opacity */
   }
 
   .modal-content {
-    background-color: #fefefe;
+    background-color: #ffc16a;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
+    border: 5px solid #fe4102;
     width: fit-content; /* Could be more or less, depending on screen size */
-  }
+    border-radius: 15px;  
+}
   
   /* The Close Button */
   .close {
-    color: #aaa;
+    color: #900101;
+   
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    width: 10px;
+    
   }
